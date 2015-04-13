@@ -916,7 +916,8 @@ class ILoop(in0: Option[BufferedReader], protected val out: JPrintWriter)
       !intp.reporter.hasErrors
     }
     loadFiles(settings)
-    printWelcome()
+    if( ! Properties.propOrFalse( "scala.shell.disableWelcomeMessage" ) ) 
+      printWelcome()
 
     try loop() match {
       case LineResults.EOF => out print Properties.shellInterruptedString
