@@ -80,5 +80,5 @@ object FileBackedHistory {
   import Properties.userHome
 
   def defaultFileName = ".scala_history"
-  def defaultFile: File = File(Path(userHome) / defaultFileName)
+  def defaultFile: File = File( Path( Properties.propOrElse( "scala.shell.histfile", userHome +"/"+ defaultFileName) ) )
 }
