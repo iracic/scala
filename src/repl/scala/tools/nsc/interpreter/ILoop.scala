@@ -695,7 +695,8 @@ class ILoop(in0: Option[BufferedReader], protected val out: JPrintWriter)
   def verbosity() = {
     val old = intp.printResults
     intp.printResults = !old
-    echo("Switched " + (if (old) "off" else "on") + " result printing.")
+    if( ! Properties.propOrFalse( "scala.shell.silentVerbositySwitch" ) )
+      echo("Switched " + (if (old) "off" else "on") + " result printing.")
   }
 
   /** Run one command submitted by the user.  Two values are returned:
