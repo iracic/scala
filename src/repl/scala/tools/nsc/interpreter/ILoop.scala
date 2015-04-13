@@ -775,8 +775,8 @@ class ILoop(in0: Option[BufferedReader], protected val out: JPrintWriter)
   }
 
   private object paste extends Pasted {
-    val ContinueString = "     | "
-    val PromptString   = "scala> "
+    val ContinueString = Properties.propOrElse( "scala.shell.prompt2", "     | " )
+    val PromptString   = Properties.propOrElse( "scala.shell.prompt", "scala> " )
 
     def interpret(line: String): Unit = {
       echo(line.trim)
